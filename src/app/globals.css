@@ -1,26 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary: #C8782A;
+  --primary-dark: #A05E1E;
+  --secondary: #8B2E1A;
+  --accent: #E8A838;
+  --bg: #FDF6EC;
+  --surface: #FAF0E2;
+  --text: #2C1810;
+  --text-muted: #7C6255;
+  --border: #E8D5C0;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-art-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Lato', Arial, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Lato', Arial, sans-serif;
+  line-height: 1.7;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', Georgia, serif;
+  line-height: 1.2;
+}
+
+.paint-stroke {
+  position: relative;
+}
+
+.paint-stroke::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  transform: rotate(-1deg) scaleX(0.9);
+  opacity: 0.7;
+}
+
+.blob-1 {
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+
+.blob-2 {
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+
+.blob-3 {
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
 }

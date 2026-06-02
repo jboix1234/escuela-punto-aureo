@@ -1,0 +1,150 @@
+export const services = [
+  {
+    id: 'total-art',
+    title: 'Total Art',
+    description: 'Técnicas múltiples: dibujo académico, ilustración, cómic, zentangle, mosaico, caligrafía, lettering, murales, iconografía y manualidades.',
+    price: 20,
+    icon: '🎨',
+    schedule: 'Flexible – sin horario fijo',
+    level: 'Todos los niveles',
+  },
+  {
+    id: 'modelo-vivo',
+    title: 'Dibujo & Pintura con Modelo en Vivo',
+    description: 'Bocetos rápidos y poses largas para desarrollar la percepción sensorial y capturar la figura humana con naturalidad.',
+    price: 25,
+    icon: '✏️',
+    schedule: 'Consultar disponibilidad',
+    level: 'Intermedio / Avanzado',
+  },
+  {
+    id: 'art-brunch',
+    title: 'Art Brunch',
+    description: 'Sábados creativos: Tai Chi / Chi Kung en la playa (09-10h), seguido de creación artística y brunch saludable (10-12h).',
+    price: 35,
+    icon: '🌅',
+    schedule: 'Sábados 09:00 – 12:00h',
+    level: 'Todos los niveles',
+  },
+  {
+    id: 'plain-air',
+    title: 'Plein Air & Sketching',
+    description: 'Pintura al aire libre en los entornos más bonitos de Lloret de Mar: el mar, la naturaleza y el casco urbano.',
+    price: 20,
+    icon: '🌿',
+    schedule: 'Consultar disponibilidad',
+    level: 'Todos los niveles',
+  },
+  {
+    id: 'adultos',
+    title: 'Clases para Adultos',
+    description: 'Ambiente relajado y no competitivo. Mejora la comunicación, reduce el estrés, refuerza la autoestima y activa ambos hemisferios cerebrales.',
+    price: 20,
+    icon: '🖌️',
+    schedule: 'Mar–Mié: 17-19h y 10-12h',
+    level: 'Todos los niveles',
+  },
+  {
+    id: 'ninos',
+    title: 'Clases para Niños y Jóvenes',
+    description: 'Fomento de la creatividad, desarrollo de la motricidad fina y mejora de la autoestima a través del arte en un entorno seguro y divertido.',
+    price: 20,
+    icon: '🌈',
+    schedule: 'Mié, Vie y Sáb',
+    level: 'Infantil / Juvenil',
+  },
+  {
+    id: 'oleo',
+    title: 'Pintura al Óleo',
+    description: 'Reinterpretación de la figura humana a través del óleo. Aprendizaje de técnicas clásicas aplicadas con una mirada contemporánea.',
+    price: 25,
+    icon: '🖼️',
+    schedule: 'Consultar disponibilidad',
+    level: 'Principiante / Intermedio',
+  },
+  {
+    id: 'foto',
+    title: 'Pintura desde Fotografías',
+    description: 'Transforma tus fotografías favoritas en obras de arte. Aprende a capturar la esencia de una imagen más allá del resultado final.',
+    price: 20,
+    icon: '📷',
+    schedule: 'Flexible',
+    level: 'Todos los niveles',
+  },
+];
+
+export const memberships = [
+  {
+    id: 'individual',
+    title: 'Clase Individual',
+    price: 20,
+    features: [
+      'Acceso durante todo el año',
+      'Sin horarios fijos',
+      'Flexibilidad total',
+      'Material incluido en clase',
+    ],
+    highlight: false,
+  },
+  {
+    id: 'ilimitada',
+    title: 'Membresía Ilimitada',
+    price: null,
+    priceLabel: 'Consultar',
+    features: [
+      'Acceso a todas las clases y talleres',
+      'Asistencia a exposiciones anuales',
+      'Participación en eventos exclusivos',
+      'Comunidad de artistas',
+      'Descuentos en materiales',
+    ],
+    highlight: true,
+  },
+];
+
+export const benefits = [
+  { icon: '💬', title: 'Comunicación no verbal', desc: 'Expresa emociones y pensamientos más allá de las palabras.' },
+  { icon: '🧘', title: 'Terapia y reducción del estrés', desc: 'El acto de pintar induce un estado meditativo natural.' },
+  { icon: '💪', title: 'Autoestima', desc: 'Cada obra terminada refuerza la confianza en uno mismo.' },
+  { icon: '✋', title: 'Motricidad fina', desc: 'Mejora la coordinación y precisión mano-ojo.' },
+  { icon: '🧠', title: 'Estado Alpha cerebral', desc: 'Concentración profunda que activa ambos hemisferios.' },
+  { icon: '❤️', title: 'Salud mental', desc: 'Reduce la ansiedad y promueve el bienestar emocional.' },
+  { icon: '🌍', title: 'Cultura y apreciación del arte', desc: 'Conecta con la historia del arte y sus maestros.' },
+  { icon: '👥', title: 'Socialización', desc: 'Crea vínculos con una comunidad creativa y acogedora.' },
+];
+
+export const blogPosts = [
+  {
+    id: 'matisse-consejos',
+    title: '4 Consejos de Henri Matisse para ser Artista',
+    excerpt: 'Matisse decía que hay que dominar los básicos antes de poder expresarse libremente. Descubre sus cuatro lecciones más valiosas para cualquier artista.',
+    date: '2024-03-15',
+    category: 'Inspiración',
+    readTime: '4 min',
+  },
+  {
+    id: 'kandinsky-lecciones',
+    title: '5 Lecciones de Arte y Vida de Kandinsky',
+    excerpt: 'El maestro del arte abstracto nos enseñó a vivir una vida llena de color, a valorar las pausas y a encontrar el balance entre el mundo interior y exterior.',
+    date: '2024-02-20',
+    category: 'Inspiración',
+    readTime: '5 min',
+  },
+  {
+    id: 'visita-sagrada-familia',
+    title: 'Sagrada Família: Visita Virtual por Gaudí',
+    excerpt: 'Un recorrido virtual por una de las obras arquitectónicas más impresionantes del mundo, donde el arte y la fe se fusionan en cada detalle.',
+    date: '2024-01-10',
+    category: 'Arte & Cultura',
+    readTime: '3 min',
+  },
+];
+
+export const contact = {
+  address: 'Av. Dr. Fleming, 17310 Lloret de Mar, Girona',
+  email: 'escuelapuntoaureo@gmail.com',
+  phone: '+34 699 708 055',
+  instagram: 'https://www.instagram.com/punto_aureo.art',
+  facebook: 'https://www.facebook.com/escuelapuntoaureo',
+  googleMapsEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2984.56!2d2.845!3d41.698!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDQxJzUyLjgiTiAywrA1MCc0Mi4wIkU!5e0!3m2!1ses!2ses!4v1700000000000',
+};
