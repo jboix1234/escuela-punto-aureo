@@ -200,14 +200,16 @@ export default function HomePage() {
                 <Image src="/images/palette.jpg" alt="Paleta de colors" fill className="object-cover" />
               </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-8 md:pt-16">
-              {benefits.map((b) => (
-                <div key={b.title} className="flex gap-4 items-start">
-                  <span className="text-xl flex-shrink-0 mt-1">{b.icon}</span>
-                  <div>
-                    <h3 className="font-medium text-sm mb-1" style={{ color: 'var(--ink)' }}>{b.title}</h3>
-                    <p className="text-xs leading-relaxed" style={{ color: 'var(--ink-mid)' }}>{b.desc}</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-0 md:pt-16">
+              {benefits.map((b, i) => (
+                <div key={b.title} className="py-6" style={{ borderBottom: '1px solid var(--line)' }}>
+                  <div className="flex items-baseline gap-4 mb-1">
+                    <span className="font-serif text-xs" style={{ color: 'var(--gold)' }}>
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <h3 className="font-medium text-sm" style={{ color: 'var(--ink)' }}>{b.title}</h3>
                   </div>
+                  <p className="text-xs leading-relaxed pl-8" style={{ color: 'var(--ink-mid)' }}>{b.desc}</p>
                 </div>
               ))}
             </div>
