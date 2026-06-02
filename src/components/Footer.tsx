@@ -3,52 +3,34 @@ import { contact } from '@/lib/data';
 
 export default function Footer() {
   return (
-    <footer style={{ background: 'var(--text)', color: 'var(--bg)' }}>
-      <div className="max-w-6xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div
-                className="w-10 h-10 blob-1 flex items-center justify-center text-white font-bold text-sm"
-                style={{ background: 'var(--primary)' }}
-              >
-                PA
-              </div>
-              <div>
-                <div className="font-serif font-bold text-base" style={{ color: 'var(--bg)' }}>
-                  Punto Áureo
-                </div>
-                <div className="text-xs tracking-widest uppercase opacity-60">Escola d'Art</div>
-              </div>
-            </div>
-            <p className="text-sm opacity-70 leading-relaxed">
-              Un lugar especial donde la creatividad fluye libremente. Desde 2006 formando artistas
-              de todos los niveles en Lloret de Mar.
+    <footer style={{ background: 'var(--ink)', color: 'var(--paper)' }}>
+      <div className="max-w-7xl mx-auto px-8 py-20">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 pb-12" style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+          <div className="md:col-span-2">
+            <div className="font-serif text-3xl mb-2" style={{ color: 'white' }}>Punto Áureo</div>
+            <div className="text-xs tracking-[0.25em] uppercase mb-6" style={{ color: 'rgba(255,255,255,0.4)' }}>Escola d'Art · Des de 2006</div>
+            <p className="text-sm leading-relaxed max-w-sm" style={{ color: 'rgba(255,255,255,0.5)' }}>
+              Un espai on la creativitat es transforma en art. Classes per a totes les edats i nivells
+              a Lloret de Mar, Costa Brava.
             </p>
-            <p className="text-sm opacity-60 mt-4 italic font-serif">
+            <p className="font-serif italic text-lg mt-6" style={{ color: 'rgba(255,255,255,0.35)' }}>
               "Aprende. Crea. Inspira."
             </p>
           </div>
 
           <div>
-            <h3 className="font-serif font-semibold text-lg mb-4" style={{ color: 'var(--accent)' }}>
-              Navegación
-            </h3>
-            <ul className="space-y-2">
+            <div className="text-xs tracking-[0.2em] uppercase mb-6" style={{ color: 'rgba(255,255,255,0.35)' }}>Navegació</div>
+            <ul className="space-y-3">
               {[
-                { href: '/', label: 'Inicio' },
-                { href: '/servicios', label: 'Servicios' },
-                { href: '/galeria', label: 'Galería' },
+                { href: '/', label: 'Inici' },
+                { href: '/servicios', label: 'Serveis' },
+                { href: '/galeria', label: 'Galeria' },
                 { href: '/blog', label: 'Blog' },
-                { href: '/reservar', label: 'Reservar clase' },
-                { href: '/contacto', label: 'Contacto' },
+                { href: '/reservar', label: 'Reservar classe' },
+                { href: '/contacto', label: 'Contacte' },
               ].map(({ href, label }) => (
                 <li key={href}>
-                  <Link
-                    href={href}
-                    className="text-sm opacity-70 hover:opacity-100 transition-opacity"
-                    style={{ color: 'var(--bg)' }}
-                  >
+                  <Link href={href} className="text-sm transition-opacity hover:opacity-100" style={{ color: 'rgba(255,255,255,0.5)' }}>
                     {label}
                   </Link>
                 </li>
@@ -57,47 +39,26 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-serif font-semibold text-lg mb-4" style={{ color: 'var(--accent)' }}>
-              Contacto
-            </h3>
-            <ul className="space-y-3 text-sm opacity-70">
-              <li>📍 {contact.address}</li>
+            <div className="text-xs tracking-[0.2em] uppercase mb-6" style={{ color: 'rgba(255,255,255,0.35)' }}>Contacte</div>
+            <ul className="space-y-3 text-sm" style={{ color: 'rgba(255,255,255,0.5)' }}>
+              <li>{contact.address}</li>
               <li>
-                <a href={`tel:${contact.phone}`} className="hover:opacity-100 transition-opacity">
-                  📞 {contact.phone}
-                </a>
+                <a href={`tel:${contact.phone}`} className="hover:opacity-100 transition-opacity">{contact.phone}</a>
               </li>
               <li>
-                <a href={`mailto:${contact.email}`} className="hover:opacity-100 transition-opacity">
-                  ✉️ {contact.email}
-                </a>
+                <a href={`mailto:${contact.email}`} className="hover:opacity-100 transition-opacity">{contact.email}</a>
+              </li>
+              <li className="pt-2 flex gap-4">
+                <a href={contact.instagram} target="_blank" rel="noopener noreferrer" className="text-xs tracking-widest uppercase hover:opacity-100 transition-opacity">Instagram</a>
+                <a href={contact.facebook} target="_blank" rel="noopener noreferrer" className="text-xs tracking-widest uppercase hover:opacity-100 transition-opacity">Facebook</a>
               </li>
             </ul>
-            <div className="flex gap-4 mt-6">
-              <a
-                href={contact.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-2xl hover:scale-110 transition-transform"
-              >
-                📷
-              </a>
-              <a
-                href={contact.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-2xl hover:scale-110 transition-transform"
-              >
-                👥
-              </a>
-            </div>
           </div>
         </div>
 
-        <div className="mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs opacity-50"
-          style={{ borderTop: '1px solid rgba(253,246,236,0.15)' }}>
-          <p>© {new Date().getFullYear()} Escola d'Art Punto Áureo. Tots els drets reservats.</p>
-          <p>Lidija Podgajni · Lloret de Mar, Girona</p>
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs" style={{ color: 'rgba(255,255,255,0.25)' }}>
+          <p>© {new Date().getFullYear()} Escola d'Art Punto Áureo. Lidija Podgajni.</p>
+          <p>Lloret de Mar, Girona, España</p>
         </div>
       </div>
     </footer>

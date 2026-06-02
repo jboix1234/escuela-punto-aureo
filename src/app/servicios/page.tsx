@@ -1,177 +1,116 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { services, memberships } from '@/lib/data';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Serveis i Classes – Escola d\'Art Punto Áureo',
-  description: 'Descobreix totes les classes i tallers: Total Art, Plein Air, Art Brunch, Dibuix amb Model i molt més. Lloret de Mar.',
+  title: "Serveis – Escola d'Art Punto Áureo",
+  description: 'Totes les classes i tallers: Total Art, Plein Air, Art Brunch, Model en Viu i més. Lloret de Mar.',
 };
 
 export default function ServiciosPage() {
   return (
     <>
-      {/* HEADER */}
-      <section
-        className="pt-32 pb-20 text-center relative overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, #FDF6EC 0%, #FAF0E2 100%)' }}
-      >
-        <div
-          className="absolute top-0 right-0 w-72 h-72 blob-2 opacity-15 pointer-events-none"
-          style={{ background: 'var(--primary)', transform: 'translate(30%, -20%)' }}
-        />
-        <div className="relative max-w-3xl mx-auto px-6">
-          <div className="text-sm font-medium tracking-widest uppercase mb-4" style={{ color: 'var(--primary)' }}>
-            El que oferim
-          </div>
-          <h1 className="font-serif font-bold text-5xl md:text-6xl mb-6" style={{ color: 'var(--text)' }}>
-            Classes i Tallers
-          </h1>
-          <p className="text-lg" style={{ color: 'var(--text-muted)' }}>
-            Vuit modalitats per a tots els nivells i horaris. Flexibles, creatives i accessibles.
-          </p>
+      {/* HEADER foto */}
+      <section className="relative h-[55vh] min-h-[400px] flex items-end overflow-hidden">
+        <Image src="/images/class-students.jpg" alt="Classes de pintura" fill priority className="object-cover object-top" />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%)' }} />
+        <div className="relative max-w-7xl mx-auto px-8 pb-16 w-full">
+          <p className="text-xs tracking-[0.3em] uppercase mb-4 text-white opacity-50">El que oferim</p>
+          <h1 className="font-serif text-6xl md:text-8xl text-white">Classes<br /><em>i Tallers</em></h1>
         </div>
       </section>
 
-      {/* SERVICES GRID */}
-      <section className="py-20" style={{ background: 'var(--bg)' }}>
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {services.map((s) => (
-              <div
-                key={s.id}
-                className="rounded-3xl p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-                style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
-              >
-                <div className="flex items-start gap-5">
-                  <div
-                    className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0"
-                    style={{ background: 'linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%)' }}
-                  >
-                    {s.icon}
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-start justify-between gap-4 mb-2">
-                      <h2 className="font-serif font-bold text-xl" style={{ color: 'var(--text)' }}>
-                        {s.title}
-                      </h2>
-                      <span className="font-bold text-xl flex-shrink-0" style={{ color: 'var(--primary)' }}>
-                        €{s.price}
-                      </span>
-                    </div>
-                    <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-muted)' }}>
-                      {s.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      <span
-                        className="text-xs px-3 py-1 rounded-full"
-                        style={{ background: 'var(--border)', color: 'var(--text-muted)' }}
-                      >
-                        📅 {s.schedule}
-                      </span>
-                      <span
-                        className="text-xs px-3 py-1 rounded-full"
-                        style={{ background: 'var(--border)', color: 'var(--text-muted)' }}
-                      >
-                        🎯 {s.level}
-                      </span>
-                    </div>
-                  </div>
+      {/* LLISTA DE SERVEIS */}
+      <section className="max-w-7xl mx-auto px-8 py-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+          {services.map((s, i) => (
+            <div
+              key={s.id}
+              className="flex gap-8 py-10 px-6 transition-colors hover:bg-stone-50"
+              style={{
+                borderBottom: '1px solid var(--line)',
+                borderRight: i % 2 === 0 ? '1px solid var(--line)' : 'none',
+              }}
+            >
+              <div className="text-xs tracking-widest mt-1 flex-shrink-0 w-6" style={{ color: 'var(--ink-low)' }}>
+                {String(i + 1).padStart(2, '0')}
+              </div>
+              <div className="flex-1">
+                <div className="flex items-start justify-between gap-4 mb-3">
+                  <h2 className="font-serif text-2xl" style={{ color: 'var(--ink)' }}>{s.title}</h2>
+                  <span className="font-serif text-2xl flex-shrink-0" style={{ color: 'var(--green)' }}>€{s.price}</span>
+                </div>
+                <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--ink-mid)' }}>{s.description}</p>
+                <div className="flex gap-6 text-xs" style={{ color: 'var(--ink-low)' }}>
+                  <span>{s.schedule}</span>
+                  <span>·</span>
+                  <span>{s.level}</span>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* MEMBERSHIPS */}
-      <section className="py-20" style={{ background: 'var(--surface)' }}>
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <div className="text-sm font-medium tracking-widest uppercase mb-4" style={{ color: 'var(--primary)' }}>
-              Plans
-            </div>
-            <h2 className="font-serif font-bold text-4xl md:text-5xl mb-4" style={{ color: 'var(--text)' }}>
-              Membresia i Preus
-            </h2>
-          </div>
+      {/* FOTO intermitja */}
+      <section className="relative h-[40vh] overflow-hidden">
+        <Image src="/images/class-easel.webp" alt="Pintant al cavallet" fill className="object-cover object-center" />
+        <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.3)' }} />
+        <div className="relative h-full flex items-center justify-center">
+          <blockquote className="text-center px-8">
+            <p className="font-serif italic text-3xl md:text-5xl text-white max-w-2xl mx-auto leading-tight">
+              "Aprende. Crea. Inspira."
+            </p>
+            <p className="text-xs tracking-widest uppercase mt-6 text-white opacity-50">Lidija Podgajni, fundadora</p>
+          </blockquote>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {memberships.map((m) => (
-              <div
-                key={m.id}
-                className="rounded-3xl p-8 relative overflow-hidden"
+      {/* MEMBRESIA */}
+      <section className="max-w-7xl mx-auto px-8 py-24">
+        <p className="text-xs tracking-[0.25em] uppercase mb-4" style={{ color: 'var(--gold)' }}>Plans</p>
+        <h2 className="font-serif text-5xl mb-16" style={{ color: 'var(--ink)' }}>Membresia<br /><em>i Preus</em></h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl">
+          {memberships.map((m) => (
+            <div
+              key={m.id}
+              className="p-10"
+              style={{
+                background: m.highlight ? 'var(--green)' : 'var(--paper)',
+                border: m.highlight ? 'none' : '1px solid var(--line)',
+              }}
+            >
+              {m.highlight && (
+                <p className="text-xs tracking-widest uppercase mb-4" style={{ color: 'rgba(255,255,255,0.5)' }}>Recomanat</p>
+              )}
+              <h3 className="font-serif text-2xl mb-2" style={{ color: m.highlight ? 'white' : 'var(--ink)' }}>
+                {m.title}
+              </h3>
+              <p className="font-serif text-5xl mb-8" style={{ color: m.highlight ? 'rgba(255,255,255,0.9)' : 'var(--green)' }}>
+                {m.price ? `€${m.price}` : m.priceLabel}
+              </p>
+              <ul className="space-y-3 mb-8">
+                {m.features.map((f) => (
+                  <li key={f} className="flex items-start gap-3 text-sm" style={{ color: m.highlight ? 'rgba(255,255,255,0.7)' : 'var(--ink-mid)' }}>
+                    <span className="flex-shrink-0 mt-0.5" style={{ color: m.highlight ? 'rgba(255,255,255,0.5)' : 'var(--gold)' }}>—</span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/reservar"
+                className="block text-center text-sm tracking-[0.15em] uppercase py-3 transition-opacity hover:opacity-70"
                 style={{
-                  background: m.highlight
-                    ? 'linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%)'
-                    : 'var(--bg)',
-                  border: m.highlight ? 'none' : '2px solid var(--border)',
+                  background: m.highlight ? 'white' : 'var(--green)',
+                  color: m.highlight ? 'var(--green)' : 'white',
                 }}
               >
-                {m.highlight && (
-                  <div
-                    className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold"
-                    style={{ background: 'var(--accent)', color: 'var(--text)' }}
-                  >
-                    Recomanat
-                  </div>
-                )}
-                <h3
-                  className="font-serif font-bold text-2xl mb-2"
-                  style={{ color: m.highlight ? 'white' : 'var(--text)' }}
-                >
-                  {m.title}
-                </h3>
-                <div
-                  className="font-bold text-4xl mb-6"
-                  style={{ color: m.highlight ? 'var(--accent)' : 'var(--primary)' }}
-                >
-                  {m.price ? `€${m.price}` : m.priceLabel}
-                  {m.price && <span className="text-base font-normal opacity-70"> / classe</span>}
-                </div>
-                <ul className="space-y-3">
-                  {m.features.map((f) => (
-                    <li
-                      key={f}
-                      className="flex items-center gap-3 text-sm"
-                      style={{ color: m.highlight ? 'rgba(255,255,255,0.9)' : 'var(--text-muted)' }}
-                    >
-                      <span style={{ color: m.highlight ? 'var(--accent)' : 'var(--primary)' }}>✓</span>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href="/reservar"
-                  className="mt-8 block text-center px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 hover:scale-105"
-                  style={{
-                    background: m.highlight ? 'white' : 'var(--primary)',
-                    color: m.highlight ? 'var(--primary)' : 'white',
-                  }}
-                >
-                  Reservar ara
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-20 text-center" style={{ background: 'var(--bg)' }}>
-        <div className="max-w-2xl mx-auto px-6">
-          <h2 className="font-serif font-bold text-3xl mb-4" style={{ color: 'var(--text)' }}>
-            Tens dubtes sobre quin servei és per a tu?
-          </h2>
-          <p className="mb-8" style={{ color: 'var(--text-muted)' }}>
-            Escriu-nos i t&apos;ajudarem a trobar la classe perfecta per al teu nivell i disponibilitat.
-          </p>
-          <Link
-            href="/contacto"
-            className="inline-block px-8 py-4 rounded-full text-white font-semibold transition-all duration-300 hover:scale-105"
-            style={{ background: 'var(--primary)' }}
-          >
-            Contacta&apos;ns
-          </Link>
+                Reservar ara
+              </Link>
+            </div>
+          ))}
         </div>
       </section>
     </>

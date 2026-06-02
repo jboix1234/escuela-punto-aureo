@@ -15,40 +15,40 @@ type FormData = {
   message: string;
 };
 
-const timeSlots = [
-  '10:00', '11:00', '12:00', '17:00', '18:00', '19:00',
-];
+const timeSlots = ['10:00', '11:00', '12:00', '17:00', '18:00', '19:00'];
+
+const inputBase: React.CSSProperties = {
+  background: 'transparent',
+  borderBottom: '1px solid var(--line)',
+  color: 'var(--ink)',
+  width: '100%',
+  padding: '10px 0',
+  fontSize: '14px',
+  outline: 'none',
+};
 
 export default function BookingForm() {
   const [submitted, setSubmitted] = useState(false);
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>();
 
   const onSubmit = async (data: FormData) => {
-    await new Promise((r) => setTimeout(r, 1000));
-    console.log('Booking data:', data);
+    await new Promise((r) => setTimeout(r, 800));
+    console.log('Booking:', data);
     setSubmitted(true);
   };
 
   if (submitted) {
     return (
-      <div
-        className="rounded-3xl p-12 text-center"
-        style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
-      >
-        <div className="text-6xl mb-6">🎨</div>
-        <h2 className="font-serif font-bold text-3xl mb-4" style={{ color: 'var(--text)' }}>
-          Reserva enviada!
-        </h2>
-        <p className="text-lg mb-2" style={{ color: 'var(--text-muted)' }}>
-          Gràcies per contactar-nos.
-        </p>
-        <p className="text-base mb-8" style={{ color: 'var(--text-muted)' }}>
+      <div className="py-20 text-center">
+        <p className="text-xs tracking-[0.25em] uppercase mb-4" style={{ color: 'var(--gold)' }}>Reserva enviada</p>
+        <h2 className="font-serif text-4xl mb-4" style={{ color: 'var(--ink)' }}>Gràcies!</h2>
+        <p className="text-sm mb-10" style={{ color: 'var(--ink-mid)' }}>
           Et confirmarem la reserva per correu electrònic en menys de 24 hores.
         </p>
         <button
           onClick={() => setSubmitted(false)}
-          className="px-6 py-3 rounded-full text-sm font-semibold"
-          style={{ background: 'var(--primary)', color: 'white' }}
+          className="text-xs tracking-[0.2em] uppercase border-b pb-0.5 transition-opacity hover:opacity-50"
+          style={{ color: 'var(--ink)', borderColor: 'var(--line)' }}
         >
           Fer una altra reserva
         </button>
@@ -57,182 +57,99 @@ export default function BookingForm() {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="rounded-3xl p-8"
-      style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
-    >
-      <h2 className="font-serif font-bold text-2xl mb-8" style={{ color: 'var(--text)' }}>
-        Dades de la reserva
-      </h2>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
         <div>
-          <label className="block text-sm font-medium mb-2" style={{ color: 'var(--text)' }}>
-            Nom complet *
-          </label>
-          <input
-            {...register('name', { required: 'El nom és obligatori' })}
-            className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all"
-            style={{
-              background: 'var(--bg)',
-              border: `1px solid ${errors.name ? '#E53E3E' : 'var(--border)'}`,
-              color: 'var(--text)',
-            }}
-            placeholder="El teu nom"
-          />
-          {errors.name && (
-            <p className="text-xs mt-1" style={{ color: '#E53E3E' }}>{errors.name.message}</p>
-          )}
+          <label className="block text-xs tracking-[0.15em] uppercase mb-3" style={{ color: 'var(--ink-low)' }}>Nom complet *</label>
+          <input {...register('name', { required: true })} style={{ ...inputBase, borderColor: errors.name ? '#c0392b' : undefined }} placeholder="El teu nom" />
+          {errors.name && <p className="text-xs mt-1" style={{ color: '#c0392b' }}>Camp obligatori</p>}
         </div>
-
         <div>
-          <label className="block text-sm font-medium mb-2" style={{ color: 'var(--text)' }}>
-            Telèfon
-          </label>
-          <input
-            {...register('phone')}
-            className="w-full px-4 py-3 rounded-xl text-sm outline-none"
-            style={{ background: 'var(--bg)', border: '1px solid var(--border)', color: 'var(--text)' }}
-            placeholder="+34 600 000 000"
-          />
+          <label className="block text-xs tracking-[0.15em] uppercase mb-3" style={{ color: 'var(--ink-low)' }}>Telèfon</label>
+          <input {...register('phone')} style={inputBase} placeholder="+34 600 000 000" />
         </div>
       </div>
 
-      <div className="mb-6">
-        <label className="block text-sm font-medium mb-2" style={{ color: 'var(--text)' }}>
-          Correu electrònic *
-        </label>
+      <div>
+        <label className="block text-xs tracking-[0.15em] uppercase mb-3" style={{ color: 'var(--ink-low)' }}>Correu electrònic *</label>
         <input
-          {...register('email', {
-            required: 'El correu és obligatori',
-            pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Correu no vàlid' },
-          })}
+          {...register('email', { required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ })}
           type="email"
-          className="w-full px-4 py-3 rounded-xl text-sm outline-none"
-          style={{
-            background: 'var(--bg)',
-            border: `1px solid ${errors.email ? '#E53E3E' : 'var(--border)'}`,
-            color: 'var(--text)',
-          }}
+          style={{ ...inputBase, borderColor: errors.email ? '#c0392b' : undefined }}
           placeholder="nom@exemple.com"
         />
-        {errors.email && (
-          <p className="text-xs mt-1" style={{ color: '#E53E3E' }}>{errors.email.message}</p>
-        )}
+        {errors.email && <p className="text-xs mt-1" style={{ color: '#c0392b' }}>Correu no vàlid</p>}
       </div>
 
-      <div className="mb-6">
-        <label className="block text-sm font-medium mb-2" style={{ color: 'var(--text)' }}>
-          Classe o taller *
-        </label>
+      <div>
+        <label className="block text-xs tracking-[0.15em] uppercase mb-3" style={{ color: 'var(--ink-low)' }}>Classe o taller *</label>
         <select
-          {...register('service', { required: 'Selecciona una classe' })}
-          className="w-full px-4 py-3 rounded-xl text-sm outline-none"
-          style={{
-            background: 'var(--bg)',
-            border: `1px solid ${errors.service ? '#E53E3E' : 'var(--border)'}`,
-            color: 'var(--text)',
-          }}
+          {...register('service', { required: true })}
+          style={{ ...inputBase, borderColor: errors.service ? '#c0392b' : undefined }}
         >
-          <option value="">Selecciona una opció...</option>
+          <option value="">Selecciona una opció…</option>
           {services.map((s) => (
-            <option key={s.id} value={s.id}>
-              {s.title} – €{s.price}
-            </option>
+            <option key={s.id} value={s.id}>{s.title} — €{s.price}</option>
           ))}
         </select>
-        {errors.service && (
-          <p className="text-xs mt-1" style={{ color: '#E53E3E' }}>{errors.service.message}</p>
-        )}
+        {errors.service && <p className="text-xs mt-1" style={{ color: '#c0392b' }}>Selecciona una classe</p>}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
         <div>
-          <label className="block text-sm font-medium mb-2" style={{ color: 'var(--text)' }}>
-            Data preferida *
-          </label>
+          <label className="block text-xs tracking-[0.15em] uppercase mb-3" style={{ color: 'var(--ink-low)' }}>Data preferida *</label>
           <input
-            {...register('date', { required: 'Selecciona una data' })}
+            {...register('date', { required: true })}
             type="date"
             min={new Date().toISOString().split('T')[0]}
-            className="w-full px-4 py-3 rounded-xl text-sm outline-none"
-            style={{
-              background: 'var(--bg)',
-              border: `1px solid ${errors.date ? '#E53E3E' : 'var(--border)'}`,
-              color: 'var(--text)',
-            }}
+            style={{ ...inputBase, borderColor: errors.date ? '#c0392b' : undefined }}
           />
-          {errors.date && (
-            <p className="text-xs mt-1" style={{ color: '#E53E3E' }}>{errors.date.message}</p>
-          )}
+          {errors.date && <p className="text-xs mt-1" style={{ color: '#c0392b' }}>Selecciona una data</p>}
         </div>
-
         <div>
-          <label className="block text-sm font-medium mb-2" style={{ color: 'var(--text)' }}>
-            Hora preferida
-          </label>
-          <select
-            {...register('time')}
-            className="w-full px-4 py-3 rounded-xl text-sm outline-none"
-            style={{ background: 'var(--bg)', border: '1px solid var(--border)', color: 'var(--text)' }}
-          >
+          <label className="block text-xs tracking-[0.15em] uppercase mb-3" style={{ color: 'var(--ink-low)' }}>Hora preferida</label>
+          <select {...register('time')} style={inputBase}>
             <option value="">Qualsevol hora</option>
-            {timeSlots.map((t) => (
-              <option key={t} value={t}>{t}h</option>
-            ))}
+            {timeSlots.map((t) => <option key={t} value={t}>{t}h</option>)}
           </select>
         </div>
       </div>
 
-      <div className="mb-6">
-        <label className="block text-sm font-medium mb-2" style={{ color: 'var(--text)' }}>
-          Nivell artístic
-        </label>
-        <div className="grid grid-cols-3 gap-3">
+      <div>
+        <label className="block text-xs tracking-[0.15em] uppercase mb-4" style={{ color: 'var(--ink-low)' }}>Nivell artístic</label>
+        <div className="flex gap-8">
           {['Principiant', 'Intermedi', 'Avançat'].map((level) => (
-            <label
-              key={level}
-              className="flex items-center gap-2 px-4 py-3 rounded-xl cursor-pointer text-sm transition-all"
-              style={{ background: 'var(--bg)', border: '1px solid var(--border)', color: 'var(--text)' }}
-            >
-              <input
-                {...register('level')}
-                type="radio"
-                value={level}
-                className="accent-orange-600"
-              />
+            <label key={level} className="flex items-center gap-3 text-sm cursor-pointer" style={{ color: 'var(--ink-mid)' }}>
+              <input {...register('level')} type="radio" value={level} className="accent-stone-800" />
               {level}
             </label>
           ))}
         </div>
       </div>
 
-      <div className="mb-8">
-        <label className="block text-sm font-medium mb-2" style={{ color: 'var(--text)' }}>
-          Missatge o comentaris
-        </label>
+      <div>
+        <label className="block text-xs tracking-[0.15em] uppercase mb-3" style={{ color: 'var(--ink-low)' }}>Comentaris</label>
         <textarea
           {...register('message')}
           rows={4}
-          className="w-full px-4 py-3 rounded-xl text-sm outline-none resize-none"
-          style={{ background: 'var(--bg)', border: '1px solid var(--border)', color: 'var(--text)' }}
-          placeholder="Explica'ns qualsevol cosa que vulguis que sapiguem..."
+          style={{ ...inputBase, resize: 'none', paddingTop: '10px' }}
+          placeholder="Qualsevol cosa que vulguis que sapiguem…"
         />
       </div>
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="w-full py-4 rounded-full text-white font-bold text-base transition-all duration-300 hover:scale-105 hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
-        style={{ background: 'linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%)' }}
-      >
-        {isSubmitting ? 'Enviant...' : 'Enviar reserva'}
-      </button>
-
-      <p className="text-center text-xs mt-4" style={{ color: 'var(--text-muted)' }}>
-        * El pagament es realitzarà el dia de la classe. Sense despeses d&apos;avançament.
-      </p>
+      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 pt-4" style={{ borderTop: '1px solid var(--line)' }}>
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="text-sm tracking-[0.15em] uppercase px-10 py-4 text-white transition-opacity hover:opacity-80 disabled:opacity-50"
+          style={{ background: 'var(--green)' }}
+        >
+          {isSubmitting ? 'Enviant…' : 'Enviar reserva'}
+        </button>
+        <p className="text-xs" style={{ color: 'var(--ink-low)' }}>
+          * El pagament es realitzarà el dia de la classe.
+        </p>
+      </div>
     </form>
   );
 }

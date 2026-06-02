@@ -1,110 +1,121 @@
+import Image from 'next/image';
+import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Galeria – Escola d\'Art Punto Áureo',
-  description: 'Treballs dels nostres alumnes. Pintura, dibuix, mosaics, aquarel·la i molt més.',
+  title: "Galeria – Escola d'Art Punto Áureo",
+  description: 'Obres dels nostres alumnes. Pintura a l\'oli, aquarel·la, mosaic i molt més.',
 };
 
-const artworks = [
-  { bg: 'linear-gradient(135deg, #E8A838, #C8782A)', category: 'Pintura al Oli', title: 'Natura morta amb fruites', emoji: '🌻', size: 'large' },
-  { bg: 'linear-gradient(135deg, #8B2E1A, #C8782A)', category: 'Dibuix', title: 'Estudi de figura humana', emoji: '✏️', size: 'normal' },
-  { bg: 'linear-gradient(135deg, #4A7C59, #A8C5A0)', category: 'Aquarel·la', title: 'Plein Air – Costa Brava', emoji: '🌿', size: 'normal' },
-  { bg: 'linear-gradient(135deg, #2C5282, #63B3ED)', category: 'Oli', title: 'Retrat expressiu', emoji: '🎭', size: 'large' },
-  { bg: 'linear-gradient(135deg, #744210, #D69E2E)', category: 'Mosaic', title: 'Composició geomètrica', emoji: '🔷', size: 'normal' },
-  { bg: 'linear-gradient(135deg, #553C9A, #B794F4)', category: 'Acrílic', title: 'Composició abstracta', emoji: '🎨', size: 'normal' },
-  { bg: 'linear-gradient(135deg, #276749, #68D391)', category: 'Aquarel·la', title: 'Jardí botànic', emoji: '🌺', size: 'normal' },
-  { bg: 'linear-gradient(135deg, #C05621, #F6AD55)', category: 'Oli', title: 'Posta de sol al mar', emoji: '🌅', size: 'large' },
-  { bg: 'linear-gradient(135deg, #1A365D, #4299E1)', category: 'Llapis', title: 'Arquitectura urbana', emoji: '🏛️', size: 'normal' },
-  { bg: 'linear-gradient(135deg, #702459, #ED64A6)', category: 'Acrílic', title: 'Flors en bloom', emoji: '🌸', size: 'normal' },
-  { bg: 'linear-gradient(135deg, #2D3748, #718096)', category: 'Carbó', title: 'Estudi de llum i ombra', emoji: '🖤', size: 'normal' },
-  { bg: 'linear-gradient(135deg, #B7791F, #F6E05E)', category: 'Mosaic', title: 'Mediterrani', emoji: '🌊', size: 'normal' },
+const paintings = [
+  { src: '/images/gallery-1.jpg', title: 'Armonia Costera', tech: 'Oli sobre tela', size: 'tall' },
+  { src: '/images/gallery-2.jpg', title: 'Llum Daurada', tech: 'Oli sobre tela', size: 'square' },
+  { src: '/images/gallery-3.jpg', title: 'Plaça Mediterrània', tech: 'Oli sobre tela', size: 'wide' },
+  { src: '/images/gallery-4.jpg', title: 'Tardor al Bosc', tech: 'Oli sobre tela', size: 'square' },
+  { src: '/images/gallery-5.jpg', title: 'Riu entre Arbres', tech: 'Oli sobre tela', size: 'tall' },
+  { src: '/images/gallery-6.jpg', title: 'Avinguda de Tardor', tech: 'Oli sobre tela', size: 'wide' },
 ];
 
-const categories = ['Tots', 'Pintura al Oli', 'Dibuix', 'Aquarel·la', 'Mosaic', 'Acrílic'];
+const classPhotos = [
+  { src: '/images/class-group.jpg', caption: 'Sessió de grup' },
+  { src: '/images/class-easel.webp', caption: 'Taller individual' },
+  { src: '/images/class-students.jpg', caption: 'Classes acadèmiques' },
+  { src: '/images/class-solo.jpg', caption: 'Treball personal' },
+];
 
 export default function GaleriaPage() {
   return (
     <>
       {/* HEADER */}
-      <section
-        className="pt-32 pb-20 text-center relative overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, #FDF6EC 0%, #FAF0E2 100%)' }}
-      >
-        <div
-          className="absolute bottom-0 left-0 w-64 h-64 blob-3 opacity-15 pointer-events-none"
-          style={{ background: 'var(--accent)', transform: 'translate(-20%, 30%)' }}
-        />
-        <div className="relative max-w-3xl mx-auto px-6">
-          <div className="text-sm font-medium tracking-widest uppercase mb-4" style={{ color: 'var(--primary)' }}>
-            Treballs dels alumnes
+      <section className="pt-40 pb-20 max-w-7xl mx-auto px-8">
+        <p className="text-xs tracking-[0.25em] uppercase mb-4" style={{ color: 'var(--gold)' }}>Treballs dels alumnes</p>
+        <h1 className="font-serif text-6xl md:text-8xl" style={{ color: 'var(--ink)' }}>
+          Galeria<br /><em>d'Art</em>
+        </h1>
+      </section>
+
+      {/* NOTA */}
+      <div className="max-w-7xl mx-auto px-8 mb-8">
+        <p className="text-xs" style={{ color: 'var(--ink-low)' }}>
+          Galeria il·lustrativa. Les fotografies reals de les obres dels alumnes s'afegiran aviat.
+        </p>
+      </div>
+
+      {/* PAINTINGS GRID – editorial asimètric */}
+      <section className="max-w-7xl mx-auto px-8 pb-24">
+        {/* fila 1: 1 gran + 2 petites */}
+        <div className="grid grid-cols-3 gap-3 mb-3">
+          <div className="col-span-2 relative aspect-[4/3] overflow-hidden group">
+            <Image src={paintings[0].src} alt={paintings[0].title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+            <PaintingOverlay {...paintings[0]} />
           </div>
-          <h1 className="font-serif font-bold text-5xl md:text-6xl mb-6" style={{ color: 'var(--text)' }}>
-            Galeria d&apos;Art
-          </h1>
-          <p className="text-lg" style={{ color: 'var(--text-muted)' }}>
-            Una mostra del talent que floreix cada dia a l&apos;escola. Cada obra explica una història única.
-          </p>
-        </div>
-      </section>
-
-      {/* NOTE */}
-      <section className="py-6" style={{ background: 'var(--surface)', borderBottom: '1px solid var(--border)' }}>
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
-            📸 Galeria il·lustrativa. Les fotografies reals de les obres dels alumnes s&apos;afegiran próximament.
-          </p>
-        </div>
-      </section>
-
-      {/* GALLERY GRID */}
-      <section className="py-20" style={{ background: 'var(--bg)' }}>
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
-            {artworks.map((item, i) => (
-              <div
-                key={i}
-                className="break-inside-avoid rounded-2xl overflow-hidden relative group cursor-pointer"
-                style={{
-                  background: item.bg,
-                  aspectRatio: item.size === 'large' ? '4/5' : '1/1',
-                }}
-              >
-                <div className="absolute inset-0 flex items-center justify-center"
-                  style={{ fontSize: item.size === 'large' ? '5rem' : '4rem', opacity: 0.3 }}>
-                  {item.emoji}
-                </div>
-                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-40 transition-opacity duration-300" />
-                <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                  <div className="text-xs font-medium text-white opacity-80 mb-1">{item.category}</div>
-                  <div className="text-base font-serif font-semibold text-white">{item.title}</div>
-                </div>
+          <div className="flex flex-col gap-3">
+            {paintings.slice(1, 3).map((p) => (
+              <div key={p.src} className="relative flex-1 overflow-hidden group" style={{ minHeight: '180px' }}>
+                <Image src={p.src} alt={p.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                <PaintingOverlay {...p} />
               </div>
             ))}
           </div>
         </div>
+        {/* fila 2: 3 iguals */}
+        <div className="grid grid-cols-3 gap-3">
+          {paintings.slice(3).map((p) => (
+            <div key={p.src} className="relative aspect-square overflow-hidden group">
+              <Image src={p.src} alt={p.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+              <PaintingOverlay {...p} />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* DIVIDER */}
+      <div className="max-w-7xl mx-auto px-8 mb-24">
+        <div className="h-px" style={{ background: 'var(--line)' }} />
+      </div>
+
+      {/* FOTOS DE CLASSE */}
+      <section className="max-w-7xl mx-auto px-8 pb-24">
+        <p className="text-xs tracking-[0.25em] uppercase mb-4" style={{ color: 'var(--gold)' }}>La vida al taller</p>
+        <h2 className="font-serif text-4xl md:text-5xl mb-16" style={{ color: 'var(--ink)' }}>
+          Al nostre estudi
+        </h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {classPhotos.map(({ src, caption }) => (
+            <div key={src} className="flex flex-col gap-3">
+              <div className="relative aspect-[3/4] overflow-hidden group">
+                <Image src={src} alt={caption} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+              </div>
+              <p className="text-xs" style={{ color: 'var(--ink-low)' }}>{caption}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* CTA */}
-      <section
-        className="py-20 text-center"
-        style={{ background: 'linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%)' }}
-      >
-        <div className="max-w-2xl mx-auto px-6">
-          <h2 className="font-serif font-bold text-3xl text-white mb-4">
-            Vols que la teva obra aparegui aquí?
-          </h2>
-          <p className="text-white opacity-80 mb-8">
-            Apunta&apos;t a les nostres classes i comença a crear les teves pròpies obres d&apos;art.
-          </p>
-          <a
+      <section className="relative h-72 overflow-hidden flex items-center justify-center">
+        <Image src="/images/class-group.jpg" alt="Classe" fill className="object-cover" />
+        <div className="absolute inset-0 bg-black opacity-60" />
+        <div className="relative text-center">
+          <h2 className="font-serif text-4xl text-white mb-6">Crea la teva pròpia obra</h2>
+          <Link
             href="/reservar"
-            className="inline-block px-8 py-4 rounded-full font-bold text-sm transition-all duration-300 hover:scale-105"
-            style={{ background: 'white', color: 'var(--primary)' }}
+            className="text-xs tracking-[0.2em] uppercase px-8 py-3 text-white border transition-opacity hover:opacity-70"
+            style={{ borderColor: 'rgba(255,255,255,0.4)' }}
           >
-            Reserva la teva classe
-          </a>
+            Reservar classe
+          </Link>
         </div>
       </section>
     </>
+  );
+}
+
+function PaintingOverlay({ title, tech }: { title: string; tech: string }) {
+  return (
+    <div className="absolute inset-0 bg-black opacity-0 hover:opacity-50 transition-all duration-500 flex flex-col justify-end p-5">
+      <p className="text-white text-sm font-medium translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">{title}</p>
+      <p className="text-white text-xs opacity-70 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 delay-75">{tech}</p>
+    </div>
   );
 }
