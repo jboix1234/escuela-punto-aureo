@@ -230,22 +230,22 @@ export default function HomePage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {blogPosts.map((post, i) => (
-            <article key={post.id}>
+          {blogPosts.slice(0, 3).map((post) => (
+            <Link key={post.id} href={`/blog/${post.id}`} className="group block">
               <div className="relative aspect-video overflow-hidden mb-6">
                 <Image
-                  src={i === 0 ? '/images/brushes.jpg' : i === 1 ? '/images/process.jpg' : '/images/class-easel.webp'}
+                  src={post.image}
                   alt={post.title}
                   fill
-                  className="object-cover transition-transform duration-700 hover:scale-105"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
               <p className="text-xs tracking-[0.2em] uppercase mb-3" style={{ color: 'var(--gold)' }}>
                 {post.category} · {post.readTime}
               </p>
-              <h3 className="font-serif text-2xl mb-3 leading-tight" style={{ color: 'var(--ink)' }}>{post.title}</h3>
+              <h3 className="font-serif text-2xl mb-3 leading-tight transition-opacity group-hover:opacity-60" style={{ color: 'var(--ink)' }}>{post.title}</h3>
               <p className="text-xs leading-relaxed" style={{ color: 'var(--ink-mid)' }}>{post.excerpt.slice(0, 100)}…</p>
-            </article>
+            </Link>
           ))}
         </div>
       </section>

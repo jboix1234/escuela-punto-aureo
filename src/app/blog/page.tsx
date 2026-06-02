@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import type { Metadata } from 'next';
 import { blogPosts } from '@/lib/data';
 
@@ -7,45 +8,8 @@ export const metadata: Metadata = {
   description: "Articles d'inspiració artística, consells de grans mestres i cultura de l'art.",
 };
 
-const allPosts = [
-  ...blogPosts,
-  {
-    id: 'beneficis-art-adults',
-    title: 'Per Què els Adults Haurien d\'Aprendre a Pintar',
-    excerpt: 'Descobreix com la pintura pot transformar la vida quotidiana dels adults: reduint l\'estrès, millorant la concentració i obrint noves vies d\'expressió personal.',
-    date: '2023-12-05',
-    category: 'Benestar',
-    readTime: '6 min',
-  },
-  {
-    id: 'plein-air-lloret',
-    title: 'Plein Air a la Costa Brava: els Millors Racons per Pintar',
-    excerpt: 'Una guia dels llocs més inspiradors de Lloret de Mar i la Costa Brava per pintar a l\'aire lliure, des de les cales amagades fins als pobles medievals.',
-    date: '2023-11-18',
-    category: 'Tutorials',
-    readTime: '7 min',
-  },
-  {
-    id: 'mosaic-historia',
-    title: 'La Fascinant Història del Mosaic Mediterrani',
-    excerpt: 'Des dels paviments romans fins als mosaics modernistes de Gaudí, un recorregut per la rica tradició del mosaic a la Mediterrània.',
-    date: '2023-10-30',
-    category: 'Art & Cultura',
-    readTime: '8 min',
-  },
-];
-
-const postImages = [
-  '/images/brushes.jpg',
-  '/images/process.jpg',
-  '/images/class-easel.webp',
-  '/images/class-solo.jpg',
-  '/images/palette.jpg',
-  '/images/about.jpg',
-];
-
 export default function BlogPage() {
-  const [featured, ...rest] = allPosts;
+  const [featured, ...rest] = blogPosts;
 
   return (
     <>
@@ -57,27 +21,39 @@ export default function BlogPage() {
 
       {/* ARTICLE DESTACAT */}
       <section className="max-w-7xl mx-auto px-8 mb-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-0" style={{ border: '1px solid var(--line)' }}>
-          <div className="relative aspect-[4/3] overflow-hidden">
-            <Image src="/images/brushes.jpg" alt={featured.title} fill className="object-cover" />
-          </div>
-          <div className="p-12 flex flex-col justify-center" style={{ background: 'var(--paper)' }}>
-            <p className="text-xs tracking-[0.2em] uppercase mb-6" style={{ color: 'var(--gold)' }}>
-              Destacat · {featured.category}
-            </p>
-            <h2 className="font-serif text-4xl mb-6 leading-tight" style={{ color: 'var(--ink)' }}>
-              {featured.title}
-            </h2>
-            <p className="text-sm leading-relaxed mb-8" style={{ color: 'var(--ink-mid)' }}>
-              {featured.excerpt}
-            </p>
-            <div className="flex items-center gap-6 text-xs" style={{ color: 'var(--ink-low)' }}>
-              <span>{new Date(featured.date).toLocaleDateString('ca-ES', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
-              <span>·</span>
-              <span>{featured.readTime} de lectura</span>
+        <Link href={`/blog/${featured.id}`} className="group block" style={{ border: '1px solid var(--line)' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+            <div className="relative aspect-[4/3] overflow-hidden">
+              <Image
+                src={featured.image}
+                alt={featured.title}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
+            <div className="p-12 flex flex-col justify-center" style={{ background: 'var(--paper)' }}>
+              <p className="text-xs tracking-[0.2em] uppercase mb-6" style={{ color: 'var(--gold)' }}>
+                Destacat · {featured.category}
+              </p>
+              <h2 className="font-serif text-4xl mb-6 leading-tight transition-opacity group-hover:opacity-60" style={{ color: 'var(--ink)' }}>
+                {featured.title}
+              </h2>
+              <p className="text-sm leading-relaxed mb-8" style={{ color: 'var(--ink-mid)' }}>
+                {featured.excerpt}
+              </p>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-6 text-xs" style={{ color: 'var(--ink-low)' }}>
+                  <span>{new Date(featured.date).toLocaleDateString('ca-ES', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                  <span>·</span>
+                  <span>{featured.readTime} de lectura</span>
+                </div>
+                <span className="text-xs tracking-widest uppercase border-b pb-0.5 transition-opacity group-hover:opacity-40" style={{ color: 'var(--ink)', borderColor: 'var(--line)' }}>
+                  Llegir →
+                </span>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
       </section>
 
       {/* DIVIDER */}
@@ -88,11 +64,11 @@ export default function BlogPage() {
       {/* GRID D'ARTICLES */}
       <section className="max-w-7xl mx-auto px-8 pb-24">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-16">
-          {rest.map((post, i) => (
-            <article key={post.id} className="group cursor-pointer">
+          {rest.map((post) => (
+            <Link key={post.id} href={`/blog/${post.id}`} className="group block">
               <div className="relative aspect-video overflow-hidden mb-6">
                 <Image
-                  src={postImages[i + 1]}
+                  src={post.image}
                   alt={post.title}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -110,7 +86,7 @@ export default function BlogPage() {
               <p className="text-xs" style={{ color: 'var(--ink-low)' }}>
                 {new Date(post.date).toLocaleDateString('ca-ES', { day: 'numeric', month: 'long', year: 'numeric' })}
               </p>
-            </article>
+            </Link>
           ))}
         </div>
       </section>

@@ -113,7 +113,18 @@ export const benefits = [
   { icon: '👥', title: 'Socialización', desc: 'Crea vínculos con una comunidad creativa y acogedora.' },
 ];
 
-export const blogPosts = [
+export type BlogPost = {
+  id: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  category: string;
+  readTime: string;
+  image: string;
+  content: { type: 'p' | 'h2' | 'blockquote'; text: string }[];
+};
+
+export const blogPosts: BlogPost[] = [
   {
     id: 'matisse-consejos',
     title: '4 Consejos de Henri Matisse para ser Artista',
@@ -121,6 +132,20 @@ export const blogPosts = [
     date: '2024-03-15',
     category: 'Inspiración',
     readTime: '4 min',
+    image: '/images/brushes.jpg',
+    content: [
+      { type: 'p', text: 'Henri Matisse es uno de los artistas más influyentes del siglo XX. Su obra, vibrante y llena de color, esconde décadas de disciplina, estudio y una filosofía del arte profundamente personal. Más allá de sus cuadros, dejó un legado de consejos que siguen siendo tan válidos hoy como cuando los pronunció.' },
+      { type: 'h2', text: '01. Domina los fundamentos antes de romperlos' },
+      { type: 'p', text: 'Matisse pasó años estudiando anatomía, perspectiva y composición clásica antes de desarrollar su estilo propio. Creía firmemente que la libertad expresiva solo es posible cuando los fundamentos se han interiorizado tanto que se vuelven instintivos. No se puede romper una regla que no se conoce.' },
+      { type: 'blockquote', text: '"La creatividad requiere coraje."' },
+      { type: 'h2', text: '02. Crea tus propias reglas' },
+      { type: 'p', text: 'Una vez dominadas las bases, el artista debe tener el valor de trazar su propio camino. Matisse revolucionó el uso del color en la pintura occidental precisamente porque se atrevió a usarlo de manera no naturalista, guiado por la emoción más que por la observación.' },
+      { type: 'h2', text: '03. Rodéate de lo que te inspira' },
+      { type: 'p', text: 'El entorno de Matisse —su estudio en Niza, las telas marroquíes, las plantas tropicales— aparece constantemente en su obra. Cultivaba un ambiente que estimulaba su imaginación. Para él, la inspiración no era algo que llegaba sola: se construía activamente.' },
+      { type: 'h2', text: '04. Persiste ante las adversidades' },
+      { type: 'p', text: 'En los últimos años de su vida, cuando una enfermedad le impidió pintar de pie, Matisse inventó la técnica del collage de papeles recortados. Sus "gouaches découpés" se convirtieron en algunas de sus obras más célebres. La perseverancia no es solo resistir: es reinventarse.' },
+      { type: 'p', text: 'En la Escola d\'Art Punto Áureo practicamos estos principios cada día. Empezamos por los fundamentos y poco a poco cada alumno encuentra su propia voz artística.' },
+    ],
   },
   {
     id: 'kandinsky-lecciones',
@@ -129,6 +154,21 @@ export const blogPosts = [
     date: '2024-02-20',
     category: 'Inspiración',
     readTime: '5 min',
+    image: '/images/process.jpg',
+    content: [
+      { type: 'p', text: 'Wassily Kandinsky no solo inventó el arte abstracto: construyó toda una filosofía sobre la relación entre el color, la forma y las emociones humanas. Su libro "De lo espiritual en el arte" sigue siendo una lectura fundamental para cualquier artista. Estas son cinco de sus lecciones más poderosas.' },
+      { type: 'h2', text: '01. Vive una vida llena de color' },
+      { type: 'p', text: 'Para Kandinsky, el color no era decorativo: era un lenguaje. El amarillo era agresivo y energético, el azul profundo y espiritual, el rojo cálido e intenso. Aprender a leer el color es aprender a leer las emociones.' },
+      { type: 'blockquote', text: '"El color es el teclado, los ojos son los martillos, el alma es el piano con sus cuerdas."' },
+      { type: 'h2', text: '02. Valora las pausas' },
+      { type: 'p', text: 'En música, el silencio es tan importante como la nota. En pintura, el espacio vacío define tanto como la pincelada. Kandinsky, formado también como músico, entendió que el ritmo y la pausa son inseparables.' },
+      { type: 'h2', text: '03. Evoluciona constantemente' },
+      { type: 'p', text: 'La obra de Kandinsky cambió radicalmente a lo largo de su vida: del paisajismo impresionista a las composiciones abstractas más libres, pasando por el rigor geométrico de su etapa en la Bauhaus. Nunca se conformó con lo que ya sabía hacer.' },
+      { type: 'h2', text: '04. El contraste como herramienta' },
+      { type: 'p', text: 'Kandinsky teorizó extensamente sobre los contrastes: cálido/frío, claro/oscuro, grande/pequeño. La tensión entre opuestos es lo que da vida a una composición.' },
+      { type: 'h2', text: '05. Equilibrio entre interior y exterior' },
+      { type: 'p', text: 'El arte, para Kandinsky, era el punto de encuentro entre el mundo interior del artista y la realidad exterior. Pintar era un acto de traducción: convertir la experiencia emocional en forma visual.' },
+    ],
   },
   {
     id: 'visita-sagrada-familia',
@@ -137,6 +177,82 @@ export const blogPosts = [
     date: '2024-01-10',
     category: 'Arte & Cultura',
     readTime: '3 min',
+    image: '/images/class-easel.webp',
+    content: [
+      { type: 'p', text: 'La Sagrada Família de Antoni Gaudí es mucho más que un edificio: es una obra de arte total en construcción permanente desde 1882. Cada fachada, cada columna, cada vidriera cuenta una historia y contiene una intención artística precisa.' },
+      { type: 'h2', text: 'Una catedral hecha de símbolos' },
+      { type: 'p', text: 'Gaudí diseñó el templo como un libro de piedra para quien no sabía leer. La fachada del Nacimiento, la única terminada en vida del arquitecto, está cubierta de esculturas que representan la vida de Cristo con un naturalismo asombroso. Cada planta, cada animal, cada figura tiene un significado concreto.' },
+      { type: 'blockquote', text: '"La originalidad consiste en volver al origen." — Antoni Gaudí' },
+      { type: 'h2', text: 'El color como elemento estructural' },
+      { type: 'p', text: 'El interior de la Sagrada Família es una lección magistral sobre el uso de la luz y el color. Las vidrieras de Joan Vila-Grau bañan el espacio de tonos azules y verdes en el lado este, y rojos y naranjas en el oeste. La luz cambia con las horas del día, transformando el espacio en una experiencia diferente por la mañana y por la tarde.' },
+      { type: 'h2', text: 'Por qué visitarla (aunque sea virtualmente)' },
+      { type: 'p', text: 'Para cualquier artista o amante del arte, la Sagrada Família ofrece una lección incomparable sobre composición, simbolismo y el poder del detalle. Si no puedes visitarla en persona, la web oficial ofrece una visita virtual en 360° que permite explorar el interior con un detalle extraordinario.' },
+      { type: 'p', text: 'En nuestras clases de Punto Áureo a menudo usamos edificios y monumentos como punto de partida para hablar de proporción, luz y composición. La arquitectura de Gaudí es un recurso inagotable.' },
+    ],
+  },
+  {
+    id: 'beneficis-art-adults',
+    title: 'Per Què els Adults Haurien d\'Aprendre a Pintar',
+    excerpt: 'Descobreix com la pintura pot transformar la vida quotidiana dels adults: reduint l\'estrès, millorant la concentració i obrint noves vies d\'expressió personal.',
+    date: '2023-12-05',
+    category: 'Benestar',
+    readTime: '6 min',
+    image: '/images/class-solo.jpg',
+    content: [
+      { type: 'p', text: 'Hi ha una idea molt estesa que pintar és una activitat per a nens o per a artistes professionals. Però la realitat és que aprendre a pintar en edat adulta ofereix beneficis únics que no té cap altra activitat.' },
+      { type: 'h2', text: 'Reducció de l\'estrès demostrada' },
+      { type: 'p', text: 'Diversos estudis han demostrat que la creació artística redueix els nivells de cortisol, la hormona de l\'estrès. Quan pintem, entrem en un estat de flux similar a la meditació: la ment s\'allibera de preocupacions i es concentra completament en el moment present.' },
+      { type: 'blockquote', text: '"Pintar és la millor meditació que he trobat." — Alumna de Punto Áureo' },
+      { type: 'h2', text: 'Estimulació cognitiva' },
+      { type: 'p', text: 'Pintar activa ambdós hemisferis cerebrals simultàniament. L\'hemisferi esquerre s\'encarrega de la planificació i la tècnica; el dret, de la creativitat i l\'expressió. Aquesta activació bilateral és especialment beneficiosa per mantenir la plasticitat cerebral amb l\'edat.' },
+      { type: 'h2', text: 'Expressió emocional' },
+      { type: 'p', text: 'Molts adults no disposen d\'espais segurs per expressar com se senten. La pintura ofereix un canal no verbal per treballar emocions difícils, alegries i experiències que costen de posar en paraules.' },
+      { type: 'h2', text: 'Comunitat i connexió' },
+      { type: 'p', text: 'Les classes de pintura creen vincles socials autèntics. Compartir una activitat creativa amb altres persones genera converses i connexions que rarament sorgeixen en altres contextos socials.' },
+      { type: 'p', text: 'A la nostra escola tenim alumnes de totes les edats que han descobert la pintura en edat adulta. Tots coincideixen: mai no és massa tard per començar.' },
+    ],
+  },
+  {
+    id: 'plein-air-lloret',
+    title: 'Plein Air a la Costa Brava: els Millors Racons per Pintar',
+    excerpt: 'Una guia dels llocs més inspiradors de Lloret de Mar i la Costa Brava per pintar a l\'aire lliure, des de les cales amagades fins als pobles medievals.',
+    date: '2023-11-18',
+    category: 'Tutorials',
+    readTime: '7 min',
+    image: '/images/gallery-1.jpg',
+    content: [
+      { type: 'p', text: 'La Costa Brava és un dels paisatges més pintats de Catalunya. La seva llum mediterrània, les aigües turqueses i les roques ocres han atret artistes durant segles. Aquí et proposem els racons que més ens inspiren per a les nostres classes de Plein Air.' },
+      { type: 'h2', text: 'La platja de Fenals' },
+      { type: 'p', text: 'A pocs minuts del centre de Lloret, la platja de Fenals ofereix una composició natural perfecta: el mar al fons, els pins al costat i una llum de tarda que transforma els colors. És ideal per practicar la pintura d\'aigüa i les terres. Millor hora: de 17h a 19h a la primavera i tardor.' },
+      { type: 'h2', text: 'El Jardí de Santa Clotilde' },
+      { type: 'p', text: 'Enfilat sobre els penya-segats amb vistes al mar, aquest jardí d\'estil italià és un escenari de somni. Les escales de pedra, les escultures i la vegetació exuberant ofereixen infinites possibilitats de composició. Ideal per treballar la perspectiva i el joc de llums i ombres.' },
+      { type: 'blockquote', text: '"Pintar a l\'aire lliure t\'ensenya a veure la llum d\'una manera que cap estudi pot replicar."' },
+      { type: 'h2', text: 'El centre medieval de Tossa de Mar' },
+      { type: 'p', text: 'A tan sols 20 minuts de Lloret, Tossa de Mar conserva una vila medieval emmurallada única a la Costa Brava. Les pedres daurades, els callejons estrets i la vista al mar des de les muralles l\'han convertit en un lloc de pelegrinatge per als pintors.' },
+      { type: 'h2', text: 'Consells pràctics per al Plein Air' },
+      { type: 'p', text: 'Porta sempre més aigua de la que creus que necessitaràs. La llum canvia ràpidament, especialment a l\'hora daurada, i és millor treballar ràpid amb masses de color grans i afinar els detalls al final. Un para-sol lleuger pot marcar la diferència en els mesos d\'estiu.' },
+    ],
+  },
+  {
+    id: 'mosaic-historia',
+    title: 'La Fascinant Història del Mosaic Mediterrani',
+    excerpt: 'Des dels paviments romans fins als mosaics modernistes de Gaudí, un recorregut per la rica tradició del mosaic a la Mediterrània.',
+    date: '2023-10-30',
+    category: 'Arte & Cultura',
+    readTime: '8 min',
+    image: '/images/palette.jpg',
+    content: [
+      { type: 'p', text: 'El mosaic és una de les formes d\'art més antigues i duradores de la civilització occidental. Des de les vil·les romanes fins als temples bizantins, passant pel modernisme català, la tradició del mosaic ha evolucionat sense perdre mai la seva essència: transformar fragments en totalitats.' },
+      { type: 'h2', text: 'Els orígens romans' },
+      { type: 'p', text: 'Els romans van elevar el mosaic a art de masses. Els paviments de les vil·les i les termes públiques estaven decorats amb escenes mitològiques, animals i patrons geomètrics executats amb una precisió extraordinària. El museu arqueològic de Girona conserva alguns dels millors exemples de la Hispania romana.' },
+      { type: 'h2', text: 'L\'esplendor bizantí' },
+      { type: 'p', text: 'A Bizanci, el mosaic va assolir la seva màxima expressió espiritual. Les figures daurades sobre fons d\'or de les basíliques de Ravenna o Istanbul servien un propòsit teològic precís: crear una llum sobrenatural que transportés el fidel a una altra dimensió. El trencadís irregular dels tesserae era deliberat: cada peça havia de capturar la llum d\'una manera diferent.' },
+      { type: 'blockquote', text: '"El mosaic és l\'art de la paciència convertida en bellesa."' },
+      { type: 'h2', text: 'Gaudí i el trencadís' },
+      { type: 'p', text: 'Antoni Gaudí va reinventar el mosaic mediterrania amb el seu trencadís: fragments de ceràmica, vidre i pedra disposats de manera aparentment caòtica per crear superfícies corbes i orgàniques. El Parc Güell és la seva obra mestra en aquest sentit. La tècnica, inicialment economica (usava materials descartats), es va convertir en un segell estètic inconfusible.' },
+      { type: 'h2', text: 'El mosaic a la nostra escola' },
+      { type: 'p', text: 'A Punto Áureo oferim classes de mosaic amb les tècniques directa i indirecta. Els alumnes aprenen a tallar les peces, a triar els colors i a compondre imatges que perdurin. És una de les disciplines més meditatives i satisfactòries que oferim.' },
+    ],
   },
 ];
 
